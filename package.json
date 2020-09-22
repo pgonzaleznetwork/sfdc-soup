@@ -1,0 +1,22 @@
+{
+  "name": "sfdc-soup",
+  "version": "1.0.0",
+  "description": "A simple API to view your Salesforce dependencies",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgonzaleznetwork/sfdc-soup.git"
+  },
+  "keywords": [
+    "salesforce"
+  ],
+  "author": "Pablo Gonzalez <pgonzaleznetwork@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgonzaleznetwork/sfdc-soup/issues"
+  },
+  "homepage": "https://github.com/pgonzaleznetwork/sfdc-soup#readme"
+}
