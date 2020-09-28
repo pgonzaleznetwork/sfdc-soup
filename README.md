@@ -44,6 +44,12 @@ In your NPM application folder, run the following command
 
 `npm install sfdc-soup`
 
+Once you have installed the module in your own NPM project, you can import it in this way
+
+```javascript
+const sfdcSoup = require('sfdc-soup');
+```
+
 ## How to use
 
 Before using the API, you must have an `entryPoint` and `connection` objects.
@@ -86,13 +92,6 @@ let connection = {
 
 How your construct this object is not a concern of `sfdc-soup`. Your application must use the relevant Salesforce APIs to get this information.
 
-**Importing the module**
-
-Once you have installed the module in your own NPM project, you can import it in this way
-
-```javascript
-const sfdcSoup = require('sfdc-soup);
-```
 
 **Getting usage information**
 
