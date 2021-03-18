@@ -1,6 +1,6 @@
 {
   "name": "sfdc-soup",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A simple API to view your Salesforce dependencies",
   "main": "src/index.js",
   "scripts": {
@@ -26,7 +26,5 @@
     "sfdc-happy-api": "2.0.0"
   },
   "homepage": "https://github.com/pgonzaleznetwork/sfdc-soup#readme",
-  "devDependencies": {
-   
-  }
+  "devDependencies": {}
 }
