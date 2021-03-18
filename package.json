@@ -1,10 +1,10 @@
 {
   "name": "sfdc-soup",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A simple API to view your Salesforce dependencies",
   "main": "src/index.js",
   "scripts": {
-    "start":"node examples/example.js",
+    "start": "node examples/example.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
