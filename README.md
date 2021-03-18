@@ -14,15 +14,20 @@ This information is provided in 4 different formats:
 
 ```javascript
 
-let usageApi = sfdcSoup.usageApi(connection,entryPoint);
-let usageResponse = await usageApi.getUsage();
+let standardField = {
+    name:'Opportunity.StageName',
+    type:'StandardField',
+    id:'Opportunity.StageName',
+}
 
-fs.writeFileSync('usageResponse.json',JSON.stringify(usageResponse));
+let soupApi = sfdcSoup(connection,standardField);
 
-let dependencyApi = sfdcSoup.dependencyApi(connection,entryPoint);
-let dependencyResponse = await dependencyApi.getDependencies();
+let usageResponse = await soupApi.getUsage();
+let dependencyResponse = await soupApi.getDependencies();
 
-fs.writeFileSync('dependencyResponse.json',JSON.stringify(dependencyResponse));
+fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
+
 
 ```
 
@@ -35,6 +40,8 @@ fs.writeFileSync('dependencyResponse.json',JSON.stringify(dependencyResponse));
 * [Installation](#installation)
 * [How to use](#how-to-use)
 * [Exploring the response](#exploring-the-response)
+* [Pills](#pills)
+* [EntryPoint Options](#entrypoint-options)
 * [Support and help](#support-and-help)
 
 
@@ -99,14 +106,14 @@ To see where a metadata member is used, use the usageApi provided by `sfdc-soup`
 
 ```javascript 
 //async function
-let usageApi = sfdcSoup.usageApi(connection,entryPoint);
-let usageResponse = await usageApi.getUsage();
+let soupApi = sfdcSoup(connection,entryPoint);
+let usageResponse = await soupApi.getUsage();
 ```
 
 ```javascript 
 //standard promise syntax
-let usageApi = sfdcSoup.usageApi(connection,entryPoint);
-usageApi.getUsage().then(response => console.log(response));
+let soupApi = sfdcSoup(connection,entryPoint);
+soupApi.getUsage().then(response => console.log(response));
 ```
 
 **Getting dependency information (deployment boundary)**
@@ -115,14 +122,14 @@ To see the [deployment boundary](https://github.com/pgonzaleznetwork/sfdc-happy-
 
 ```javascript 
 //async function
-let dependencyApi = sfdcSoup.dependencyApi(connection,entryPoint);
-let dependencyResponse = await dependencyApi.getDependencies();
+let soupApi = sfdcSoup(connection,standardField);
+let dependencyResponse = await soupApi.getDependencies();
 ```
 
 ```javascript 
 //standard promise syntax
-let dependencyApi = sfdcSoup.dependencyApi(connection,entryPoint);
-dependencyApi.getDependencies().then(response => console.log(response));
+let soupApi = sfdcSoup(connection,standardField);
+soupApi.getDependencies().then(response => console.log(response));
 ```
 
 [Back to top](#sfdc-soup)
@@ -265,6 +272,136 @@ resourceful-moose-448750-dev-ed.my.salesforce.com/00N0O00000GJnhoUAD\",
 resourceful-moose-448750-dev-ed.my.salesforce.com/01I0O000000bVd8UAE\",\"TranslationsMerger_LEX_Controller via TranslationsMerger_LEX_Controller\"
 
 ```
+
+[Back to top](#sfdc-soup)
+
+## Pills
+
+When using the `usageApi`, the metadata types will return a `pills` object that contains additional information about the metadata type and how it is referencing the entry point in question.
+
+Your client code should check if the `pills` object is populated (i.e if it has keys) and if so, display them in your UI.
+
+Here's an example of how the `pills` object shows whether a custom field is being used for reading or writing (assignment) in an apex class
+
+```javascript
+ "ApexClass": [
+        {
+            "name": "ClassWritingToField",
+            "type": "ApexClass",
+            "id": "01p3h00000FHNeiAAH",
+            "url": "https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com/01p3h00000FHNeiAAH",
+            "notes": null,
+            "namespace": null,
+            "pills": [
+                {
+                    "label": "write",
+                    "color": "#d63031"
+                }
+            ],
+            "sortOrder": 1
+        },
+        {
+            "name": "ClassReadingField",
+            "type": "ApexClass",
+            "id": "01p3h00000FHNedAAH",
+            "url": "https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com/01p3h00000FHNedAAH",
+            "notes": null,
+            "namespace": null,
+            "pills": [
+                {
+                    "label": "read",
+                    "color": "#3c9662"
+                }
+            ],
+            "sortOrder": 2
+        }
+```
+
+[Back to top](#sfdc-soup)
+
+## EntryPoint Options
+
+When using the `usageApi` some metadata types support additional information that is not returned by the API unless explictly requested.
+
+Consider the following example
+
+```javascript
+let customField = {
+    name:'Account.CustomerPriority__c',
+    type:'CustomField',
+    id:'00N3h00000DdZSIEA3',
+    options:{
+        'enhancedReportData':true,
+        'fieldInMetadataTypes':true
+    }
+}
+```
+
+With the additional options object, the API response will provide the following info:
+
+`enhancedReportData`
+
+This will tell you exactly how a field is used in a report; whether it's just a column, a filter or perhaps a grouping. To protect your API limits, this information is only available for the first 100 reports that are using the field. 
+
+ The data can be found in the `pills` object of the response. 
+
+Here's an example where the field is being used as both a filter and a grouping in the same report. Notice that the filter includes information on what the actual filter value is.
+
+This can be very useful when determining if it's safe to modify a picklist value, as doing so could break some reports. 
+
+```javascript
+"Report": [
+        {
+            "name": "Report_being_used",
+            "type": "Report",
+            "id": "00O3h0000049mk4EAA",
+            "url": "https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com/00O3h0000049mk4EAA",
+            "notes": null,
+            "namespace": null,
+            "pills": [
+                {
+                    "label": "Grouping",
+                    "color": "#d63031"
+                },
+                {
+                    "label": "Filter: equals Low",
+                    "color": "#d63031"
+                }
+            ],
+            "sortOrder": 1
+        }
+```
+
+`fieldInMetadataTypes`
+
+This will check if the field is being referenced in custom fields of custom metadata types, where the field type is `Metadata Relationship(Field Definition)`
+
+This particular option does not add additional information to the `pills` object but instead returns a brand new metadata type on the response. 
+
+```javascript
+"SRM_Metadata_Conflict_Warning__mdt": [
+        {
+            "name": "Default (from SRM_Field__c)",
+            "type": "SRM_Metadata_Conflict_Warning__mdt",
+            "id": "m013h000000BRlrAAG",
+            "url": "https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com/m013h000000BRlrAAG",
+            "notes": null,
+            "pills": []
+        }
+    ],
+    "Field_referencing__mdt": [
+        {
+            "name": "my_metadata (from Related_Field__c)",
+            "type": "Field_referencing__mdt",
+            "id": "m043h000000lprZAAQ",
+            "url": "https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com/m043h000000lprZAAQ",
+            "notes": null,
+            "pills": []
+        }
+    ]
+```
+
+
 
 [Back to top](#sfdc-soup)
 
