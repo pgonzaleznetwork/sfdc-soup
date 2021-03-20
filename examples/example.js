@@ -7,7 +7,7 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D3h000005XLUw!AQkAQEiPWKF8KTp4BvG7Uv23y8CzvWH4NEOBz1b3iKtuIiS4sW9fHb8sImTaGqSBpV_To7gp.z9meio51s5c0YajAvZRhbCP',
+    token: '00D3h000005XLUw!AQkAQKULfjlTcYaeH3UGmkhsEnvOTaMKQFUTFywnn3nKlQklceUx.lSArOjvW3jYkwB4ofEc.iGV71B0rq.AyPUJkLooTgGy',
     url:'https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com',
     apiVersion:'49.0'
 };
@@ -22,8 +22,8 @@ let customField = {
     type:'CustomField',
     id:'00N3h00000DdZSIEA3',
     options:{
-        'enhancedReportData':true,
-        'fieldInMetadataTypes':true
+        'enhancedReportData':false,
+        'fieldInMetadataTypes':false
     }
 }
 
@@ -45,6 +45,12 @@ let emailTemplate = {
     id:'00X3h000001J53gEAC',
 }
 
+let workflowAlert = {
+    name:'Account.account_alert',
+    type:'WorkflowAlert',
+    id:'01W3h000000lqaAEAQ'
+}
+
 let apexClass = {
     name:'TriggerDMLSupport',
     id:'01p3h00000C6msBAAR',
@@ -55,13 +61,13 @@ let apexClass = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,customField);
+    let soupApi = sfdcSoup(connection,workflowAlert);
 
     let usageResponse = await soupApi.getUsage();
-    let dependencyResponse = await soupApi.getDependencies();
+    //let dependencyResponse = await soupApi.getDependencies();
 
     fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
-    fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
+    //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
 
 }
 
