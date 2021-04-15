@@ -24,7 +24,7 @@
     "dotenv": "^8.2.0",
     "fast-xml-parser": "3.18.0",
     "node-fetch": "^2.6.0",
-    "sfdc-happy-api": "2.3.0"
+    "sfdc-happy-api": "2.4.0"
   },
   "homepage": "https://github.com/pgonzaleznetwork/sfdc-soup#readme",
   "devDependencies": {}
