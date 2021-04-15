@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node examples/example.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-api": "npm install sfdc-happy-api@latest && npm version minor && git commit -a -m \"updated api\" && npm publish"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "dotenv": "^8.2.0",
     "fast-xml-parser": "3.18.0",
     "node-fetch": "^2.6.0",
-    "sfdc-happy-api": "2.2.0"
+    "sfdc-happy-api": "2.3.0"
   },
   "homepage": "https://github.com/pgonzaleznetwork/sfdc-soup#readme",
   "devDependencies": {}
