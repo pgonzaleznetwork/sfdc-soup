@@ -7,7 +7,7 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D3h000005XLUw!AQkAQKULfjlTcYaeH3UGmkhsEnvOTaMKQFUTFywnn3nKlQklceUx.lSArOjvW3jYkwB4ofEc.iGV71B0rq.AyPUJkLooTgGy',
+    token: '00D3h000005XLUw!AQkAQHwSX5OdvbVY1NV66DWdQ71dCHQp9zWGSesFp6C6bCltC5auesq2cuz_WsNobPXn8AJ64n2roHLeEvVmPNfmX73F57KR',
     url:'https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com',
     apiVersion:'49.0'
 };
@@ -61,7 +61,7 @@ let apexClass = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,workflowAlert);
+    let soupApi = sfdcSoup(connection,standardField);
 
     let usageResponse = await soupApi.getUsage();
     //let dependencyResponse = await soupApi.getDependencies();
