@@ -1,6 +1,6 @@
 {
   "name": "sfdc-soup",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "A simple API to view your Salesforce dependencies",
   "main": "src/index.js",
   "scripts": {
@@ -24,7 +24,8 @@
     "dotenv": "^8.2.0",
     "fast-xml-parser": "3.18.0",
     "node-fetch": "^2.6.0",
-    "sfdc-happy-api": "2.4.0"
+    "sfdc-happy-api": "2.4.0",
+    "strip-comments": "2.0.1"
   },
   "homepage": "https://github.com/pgonzaleznetwork/sfdc-soup#readme",
   "devDependencies": {}
