@@ -7,7 +7,7 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D3h000005XLUw!AQkAQN64wzKaUYOjdcBdW46HTMz1UMQB9gf3ELYMRh26jpJjZAsxZuvxwTBHxhgsEfLHJiVJ5YC5OayzjABAXVVjTA.jRKUP',
+    token: '00D3h000005X.M.fURxW90CwBqJ4ovqZWO6324A89iojlOUNoUsMYvlbhDJGLzd.pn_jvvCmdpU6NBq.eiNf.ae9Y8zgG4z8sR',
     url:'https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com',
     apiVersion:'49.0'
 };
@@ -58,16 +58,25 @@ let apexClass = {
     options:{'classInMetadataTypes':true}
 }
 
+let apexClassBoundary = {
+    name:'SRM_SelectMetadataExtensionTests',
+    id:'01p3h00000E1kj4AAB',
+    type:'ApexClass'
+}
+
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,customField);
+    let soupApi = sfdcSoup(connection,apexClassBoundary);
 
     let usageResponse = await soupApi.getUsage();
-    //let dependencyResponse = await soupApi.getDependencies();
+    let dependencyResponse = await soupApi.getDependencies();
 
     fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
-    //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
+    fs.writeFileSync('examples/usage.csv',usageResponse.excel);
+
+    fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
+    fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);
 
 }
 
