@@ -1,7 +1,7 @@
 {
   "name": "sfdc-soup",
   "version": "4.4.0",
-  "description": "A simple API to view your Salesforce dependencies",
+  "description": "A simple API to view your Salesforce dependencies, powered by HappySoup.io",
   "main": "src/index.js",
   "scripts": {
     "start": "node examples/example.js",
