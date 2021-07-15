@@ -7,7 +7,7 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D3h000005XLUw!AQkAQChEI.yQ25049NLir5tTkxbbciE_texA1kiuxlM2rLE.smaopUcfmE3aMwKX9RNSdHVjFg2g9X9Wb5a87xdZfk9zAVIA',
+    token: '00D3h000005XLUw!AQkAQBJKu4nONgMaSzMBihJ4BEg.MfT4.brzNWz3LMAVd18amEFZtGQ3EhGntk5RQg.eI7gQc8r1W1T5V_mLn4X6tS4q8_Eb',
     url:'https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com',
     apiVersion:'49.0'
 };
@@ -18,9 +18,9 @@ let connection = {
 * @id The 18-digit id. The 15 digit one will NOT work
 */
 let customField = {
-    name:'Account.CustomerPriority__c',
+    name:'Case.SLAViolation__c',
     type:'CustomField',
-    id:'00N3h00000DdZSIEA3',
+    id:'00N3h00000DdZSREA3',
     options:{
         'enhancedReportData':false,
         'fieldInMetadataTypes':false
@@ -34,9 +34,9 @@ let customField = {
  * recognised by salesforce.
  */
 let standardField = {
-    name:'Opportunity.StageName',
+    name:'Case.Status',
     type:'StandardField',
-    id:'Opportunity.StageName',
+    id:'Case.Status',
 }
 
 let emailTemplate = {
@@ -67,15 +67,15 @@ let apexClassBoundary = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,customField);
+    let soupApi = sfdcSoup(connection,standardField);
 
     let usageResponse = await soupApi.getUsage();
     let dependencyResponse = await soupApi.getDependencies();
 
-    console.log(usageResponse.datatable)
+    //console.log(usageResponse.datatable)
 
-    /*fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
-    fs.writeFileSync('examples/usage.csv',usageResponse.excel);
+    fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+    /*fs.writeFileSync('examples/usage.csv',usageResponse.excel);
 
     fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
     fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
