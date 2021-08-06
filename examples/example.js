@@ -7,7 +7,7 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D3h000005XLUw!AQkAQBJKu4nONgMaSzMBihJ4BEg.MfT4.brzNWz3LMAVd18amEFZtGQ3EhGntk5RQg.eI7gQc8r1W1T5V_mLn4X6tS4q8_Eb',
+    token: '00D3h000005XLUw!AQkAQGwlCKXCo.blY6lUZsW4pm7iHYNUmAIut0EIMjnQrykMAMbWkFcPXxYWuPdCAsNM_AnE.A49LnJJrMMilzdGsWIjOWJ_',
     url:'https://brave-raccoon-mm7crl-dev-ed.my.salesforce.com',
     apiVersion:'49.0'
 };
@@ -34,9 +34,9 @@ let customField = {
  * recognised by salesforce.
  */
 let standardField = {
-    name:'Case.Status',
+    name:'Account.Industry',
     type:'StandardField',
-    id:'Case.Status',
+    id:'Account.Industry',
 }
 
 let emailTemplate = {
@@ -52,10 +52,10 @@ let workflowAlert = {
 }
 
 let apexClass = {
-    name:'TriggerDMLSupport',
-    id:'01p3h00000C6msBAAR',
+    name:'OpportunityTriggerHelper',
+    id:'01p3h00000FmgzOAAR',
     type:'ApexClass',
-    options:{'classInMetadataTypes':true}
+    options:{'classInMetadataTypes':false}
 }
 
 let apexClassBoundary = {
@@ -67,18 +67,18 @@ let apexClassBoundary = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,standardField);
+    let soupApi = sfdcSoup(connection,apexClass);
 
-    let usageResponse = await soupApi.getUsage();
+    //let usageResponse = await soupApi.getUsage();
     let dependencyResponse = await soupApi.getDependencies();
 
     //console.log(usageResponse.datatable)
 
-    fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
-    /*fs.writeFileSync('examples/usage.csv',usageResponse.excel);
+    //fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+   // fs.writeFileSync('examples/usage.csv',usageResponse.excel);
 
     fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
-    fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
+    /*fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
 
 }
 
