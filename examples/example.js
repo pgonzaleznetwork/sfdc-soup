@@ -7,8 +7,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D17000000YWk3!AQ8AQPtTFK20anh1727id.a1pf_8qVQhaDikRvxi83K3uNR1CsQ6809RNAM_4Q6yA1s1S4b4BQ1H2hQIPNUazUvV.4XSxV3z',
-    url:'https://guidewire--ccovenddev.my.salesforce.com',
+    token: '00D17000000YWk3!AQ8AQPHQBHpIVSCY8qlSCE4QDQJOaR49TPx0eZDrqR1PN0xeMtRfFVtTlpQL63XQQx4nyhoug0HF417T_Fx9kd42hucXUf2x',
+    url:'your domain',
     apiVersion:'49.0'
 };
 
@@ -80,7 +80,7 @@ async function test(){
 
     //console.log(usageResponse.datatable)
 
-    //fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+    fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
    // fs.writeFileSync('examples/usage.csv',usageResponse.excel);
 
     //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
