@@ -7,8 +7,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token: '00D17000000YWk3!AQ8AQPHQBHpIVSCY8qlSCE4QDQJOaR49TPx0eZDrqR1PN0xeMtRfFVtTlpQL63XQQx4nyhoug0HF417T_Fx9kd42hucXUf2x',
-    url:'your domain',
+    token:'00D300000000FHi!.j1wZp4JWCCuWL9GOqD_K0Ovy12TqWKGTKEMmgam0Vcj5OTaPr8vZD7oGIxXCZVnlnNG6X64R73',
+    url:'https://.my.salesforce.com',
     apiVersion:'49.0'
 };
 
@@ -65,8 +65,8 @@ let apexClassBoundary = {
 }
 
 let flow = {
-    name:'Closed_a_case',
-    id:'3013n000000gECMAA2',
+    name:'Case_Summon_Sub_Flow',
+    id:'3013n000000XvtOAAS',
     type:'Flow'
 }
 
