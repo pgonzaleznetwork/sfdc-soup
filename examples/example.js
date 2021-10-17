@@ -7,8 +7,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token:'00D0O000000Z9Ab!AQMAQHpL0t3DLX4uF.mQzvuK9J0LYE_4b3KK5oFxaffWfylVSz4QVbLSBKSgmglSEInxrqIx2DTZTm_ubq34mA1EikGDiyjt',
-    url:'https://resourceful-moose-448750-dev-ed.my.salesforce.com',
+    token:'test!AQwAQIz9enuI4PeUkdcGUVNG1PTiBV9LP9Ppnl44udo0Ls4VJ64yokX8tX.xdE3oFhPP3tP8xCapLzAiyNxOQnGmpguAmZm4',
+    url:'https://test--qaint.my.salesforce.com',
     apiVersion:'49.0'
 };
 
@@ -18,9 +18,9 @@ let connection = {
 * @id The 18-digit id. The 15 digit one will NOT work
 */
 let customField = {
-    name:'Case.SLAViolation__c',
+    name:'CS_SLA_Report_Summary__c.X1_Blocker__c',
     type:'CustomField',
-    id:'00N3h00000DdZSREA3',
+    id:'00N3n000003x1s0EAA',
     options:{
         'enhancedReportData':false,
         'fieldInMetadataTypes':false
@@ -73,7 +73,7 @@ let flow = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,flow);
+    let soupApi = sfdcSoup(connection,customField);
 
     let usageResponse = await soupApi.getUsage();
     //let dependencyResponse = await soupApi.getDependencies();
