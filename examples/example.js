@@ -7,8 +7,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token:'test!AQwAQIz9enuI4PeUkdcGUVNG1PTiBV9LP9Ppnl44udo0Ls4VJ64yokX8tX.xdE3oFhPP3tP8xCapLzAiyNxOQnGmpguAmZm4',
-    url:'https://test--qaint.my.salesforce.com',
+    token:'gg!AQEAQH4NXNOGtYc5ESp348yziq58brist3wj.gDtb7XfcNLMM9KB.P6Y1Hdt57dZEeiYERn4K6ZdS1Iq7rJjhjj9t33XlasP',
+    url:'https://test--uat.my.salesforce.com',
     apiVersion:'49.0'
 };
 
@@ -34,9 +34,9 @@ let customField = {
  * recognised by salesforce.
  */
 let standardField = {
-    name:'Account.Industry',
+    name:'Opportunity.StageName',
     type:'StandardField',
-    id:'Account.Industry',
+    id:'Opportunity.StageName',
 }
 
 let emailTemplate = {
@@ -73,7 +73,7 @@ let flow = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,customField);
+    let soupApi = sfdcSoup(connection,standardField);
 
     let usageResponse = await soupApi.getUsage();
     //let dependencyResponse = await soupApi.getDependencies();
