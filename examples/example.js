@@ -7,8 +7,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token:'test!AQwAQIz9enuI4PeUkdcGUVNG1PTiBV9LP9Ppnl44udo0Ls4VJ64yokX8tX.xdE3oFhPP3tP8xCapLzAiyNxOQnGmpguAmZm4',
-    url:'https://test--qaint.my.salesforce.com',
+    token:'00D8F0000008aT7!AQEAQJTdxi5GqzgPIvil4c0t1HfcSD6zgnnmQbCr7.d1pAJ484ohh9ChtRuGhoNstuIfNtwWCOQMv2_I0TLMmeZ_tD4kmLRd',
+    url:'https://guidewire--uat.my.salesforce.com',
     apiVersion:'49.0'
 };
 
@@ -34,9 +34,9 @@ let customField = {
  * recognised by salesforce.
  */
 let standardField = {
-    name:'Account.Industry',
+    name:'Opportunity.StageName',
     type:'StandardField',
-    id:'Account.Industry',
+    id:'Opportunity.StageName',
 }
 
 let emailTemplate = {
@@ -73,7 +73,7 @@ let flow = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,customField);
+    let soupApi = sfdcSoup(connection,standardField);
 
     let usageResponse = await soupApi.getUsage();
     //let dependencyResponse = await soupApi.getDependencies();
@@ -81,7 +81,7 @@ async function test(){
     //console.log(usageResponse.datatable)
 
     fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
-   // fs.writeFileSync('examples/usage.csv',usageResponse.excel);
+   //fs.writeFileSync('examples/usage.csv',usageResponse.csv);
 
     //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
     /*fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
