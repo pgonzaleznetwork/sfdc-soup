@@ -24,6 +24,7 @@
     "dotenv": "^8.2.0",
     "fast-xml-parser": "3.18.0",
     "node-fetch": "^2.6.0",
+    "sf-standard-field-dependency": "1.1.10",
     "sfdc-happy-api": "3.0.0",
     "strip-comments": "2.0.1"
   },
