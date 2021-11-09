@@ -7,7 +7,7 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token:'gg!AQEAQH4NXNOGtYc5ESp348yziq58brist3wj.gDtb7XfcNLMM9KB.P6Y1Hdt57dZEeiYERn4K6ZdS1Iq7rJjhjj9t33XlasP',
+    token:'t!AQEAQHw4aFbaipsaev08R3bFMPEhXh1R5DY7wXREzHz4mLSCZOl5swd1pi5SLHSUt1TCbOz0hRdMrf9z_0Jg3ikmbq5v5rl3',
     url:'https://test--uat.my.salesforce.com',
     apiVersion:'49.0'
 };
@@ -34,9 +34,9 @@ let customField = {
  * recognised by salesforce.
  */
 let standardField = {
-    name:'Opportunity.StageName',
+    name:'Case.RecordType',
     type:'StandardField',
-    id:'Opportunity.StageName',
+    id:'Case.RecordType',
 }
 
 let emailTemplate = {
