@@ -7,8 +7,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
 */
 let connection = {
-    token:'00D8F0000008aT7!AQEAQJTdxi5GqzgPIvil4c0t1HfcSD6zgnnmQbCr7.d1pAJ484ohh9ChtRuGhoNstuIfNtwWCOQMv2_I0TLMmeZ_tD4kmLRd',
-    url:'https://guidewire--uat.my.salesforce.com',
+    token:'test!AQEAQJTdxi5GqzgPIvil4c0t1HfcSD6zgnnmQbCr7.d1pAJ484ohh9ChtRuGhoNstuIfNtwWCOQMv2_I0TLMmeZ_tD4kmLRd',
+    url:'https://test--uat.my.salesforce.com',
     apiVersion:'49.0'
 };
 
@@ -34,9 +34,9 @@ let customField = {
  * recognised by salesforce.
  */
 let standardField = {
-    name:'Opportunity.StageName',
+    name:'Case.Reason',
     type:'StandardField',
-    id:'Opportunity.StageName',
+    id:'Case.Reason',
 }
 
 let emailTemplate = {
