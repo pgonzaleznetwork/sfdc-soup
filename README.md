@@ -88,7 +88,7 @@ The `connection` is also an object with 3 properties that represent a valid API 
 /**
 * @token A session id or oauth token with API access
 * @url Your instance url i.e login.salesforce.com or mydomain.my.salesforce.com
-* @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
+* @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 50.0 by default
 */
 let connection = {
     token: '00D0O000000Z9Ab!AQMAQMRoLQKh_uBxWEvz3as7V...',
