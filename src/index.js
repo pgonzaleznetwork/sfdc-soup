@@ -85,10 +85,7 @@ function validateApiVersion(connection){
 
     let {apiVersion } = connection;
 
-    if(!apiVersion){
-        connection.apiVersion = '50.0';
-    }
-    else if(apiVersion && parseInt(apiVersion) < 49){
+    if(parseInt(apiVersion) < 49){
         connection.apiVersion = '50.0';
     }
 
