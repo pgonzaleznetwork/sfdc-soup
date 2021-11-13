@@ -4,7 +4,7 @@ let fs = require('fs');
 /**
 * @token A session id or oauth token with API access
 * @url Your instance url i.e login.salesforce.com or mydomain.my.salesforce.com
-* @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 49.0 by default
+* @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 50.0 by default
 */
 let connection = {
     token:'test!AQEAQJTdxi5GqzgPIvil4c0t1HfcSD6zgnnmQbCr7.d1pAJ484ohh9ChtRuGhoNstuIfNtwWCOQMv2_I0TLMmeZ_tD4kmLRd',

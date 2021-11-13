@@ -62,6 +62,9 @@ function validateParams(connection,entryPoint,cache){
         }
 
         connection = validateApiVersion(connection);
+    } else {
+        // Set default API version
+        connection.apiVersion = "50.0";
     }
 
      //the cache is only used by the sfdc-happy-soup webapp
@@ -82,10 +85,7 @@ function validateApiVersion(connection){
 
     let {apiVersion } = connection;
 
-    if(!apiVersion){
-        connection.apiVersion = '50.0';
-    }
-    else if(apiVersion && parseInt(apiVersion) < 49){
+    if(parseInt(apiVersion) < 49){
         connection.apiVersion = '50.0';
     }
 
