@@ -53,10 +53,10 @@ let workflowAlert = {
 }
 
 let apexClass = {
-    name:'OpportunityTriggerHelper',
-    id:'01p3h00000FmgzOAAR',
-    type:'ApexClass',
-    options:{'classInMetadataTypes':false}
+    name:'ManagedClass',
+    id:'01p8F0000008ZkWQAU',
+    type:'ApexClass'
+
 }
 
 let apexClassBoundary = {
@@ -74,7 +74,7 @@ let flow = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,apexClassBoundary);
+    let soupApi = sfdcSoup(connection,apexClass);
 
     //let usageResponse = await soupApi.getUsage();
     let dependencyResponse = await soupApi.getDependencies();
