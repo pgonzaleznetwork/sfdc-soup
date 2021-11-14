@@ -1,5 +1,6 @@
 let sfdcSoup = require('../src/index');
 let fs = require('fs');
+require('dotenv');
 
 /**
 * @token A session id or oauth token with API access
@@ -7,8 +8,8 @@ let fs = require('fs');
 * @apiVersion the version of the Salesforce API. If not specified or if it's lower than 49.0, we use 50.0 by default
 */
 let connection = {
-    token:'test!AQEAQJTdxi5GqzgPIvil4c0t1HfcSD6zgnnmQbCr7.d1pAJ484ohh9ChtRuGhoNstuIfNtwWCOQMv2_I0TLMmeZ_tD4kmLRd',
-    url:'https://test--uat.my.salesforce.com',
+    token:process.env.TOKEN,
+    url:process.env.URL,
     apiVersion:'49.0'
 };
 
@@ -59,9 +60,9 @@ let apexClass = {
 }
 
 let apexClassBoundary = {
-    name:'SRM_SelectMetadataExtensionTests',
-    id:'01p3h00000E1kj4AAB',
-    type:'ApexClass'
+    name:'LeadTrigger',
+    id:'01q3h000000l7quAAA',
+    type:'ApexTrigger'
 }
 
 let flow = {
@@ -73,17 +74,17 @@ let flow = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,standardField);
+    let soupApi = sfdcSoup(connection,apexClassBoundary);
 
-    let usageResponse = await soupApi.getUsage();
-    //let dependencyResponse = await soupApi.getDependencies();
+    //let usageResponse = await soupApi.getUsage();
+    let dependencyResponse = await soupApi.getDependencies();
 
     //console.log(usageResponse.datatable)
 
-    fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+    //fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
    //fs.writeFileSync('examples/usage.csv',usageResponse.csv);
 
-    //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
+    fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
     /*fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
 
 }
