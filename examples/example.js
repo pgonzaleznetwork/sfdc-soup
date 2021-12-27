@@ -19,13 +19,9 @@ let connection = {
 * @id The 18-digit id. The 15 digit one will NOT work
 */
 let customField = {
-    name:'CS_SLA_Report_Summary__c.X1_Blocker__c',
+    name:'Account.CustomerPriority__c',
     type:'CustomField',
-    id:'00N3n000003x1s0EAA',
-    options:{
-        'enhancedReportData':false,
-        'fieldInMetadataTypes':false
-    }
+    id:'00N3h00000DdZSIEA3',
 }
 
 /**
@@ -74,17 +70,17 @@ let flow = {
 
 async function test(){
 
-    let soupApi = sfdcSoup(connection,apexClass);
+    let soupApi = sfdcSoup(connection,customField);
 
-    //let usageResponse = await soupApi.getUsage();
-    let dependencyResponse = await soupApi.getDependencies();
+    usageResponse = await soupApi.getUsage();
+    //let dependencyResponse = await soupApi.getDependencies();
 
     //console.log(usageResponse.datatable)
 
-    //fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+    fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
    //fs.writeFileSync('examples/usage.csv',usageResponse.csv);
 
-    fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
+    //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
     /*fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
 
 }
