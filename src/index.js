@@ -12,14 +12,17 @@ function sfdcSoup(connection,entryPoint,cache){
 
     let dependencyApi = require('../lib/sfdc_apis/dependencies');
     let usageApi = require('../lib/sfdc_apis/usage');
+    let workflowApi = require('../lib/sfdc_apis/workflowToFlow');
 
     dependencyApi = dependencyApi(connection,entryPoint,cache);
     usageApi = usageApi(connection,entryPoint,cache);
+    workflowApi = workflowApi(connection,entryPoint);
 
     let {getDependencies} = dependencyApi;
     let {getUsage} = usageApi;
+    let {getWorkflowInfo} = workflowApi;
 
-    return {getDependencies,getUsage};
+    return {getDependencies,getUsage,getWorkflowInfo};
 
 }
 
