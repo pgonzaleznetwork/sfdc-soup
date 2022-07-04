@@ -14,8 +14,8 @@ let connection = {
 };
 
 let entryPoint = {
-    name:'Account',
-    id:'Account',
+    name:'Case',
+    id:'Case',
     type:'Object'
 }
 
@@ -23,6 +23,7 @@ let soupApi = sfdcSoup(connection,entryPoint);
 
 async function test(){
     let workflowInfo = await soupApi.getWorkflowInfo();
+    console.log(workflowInfo)
 }
 
 test();
