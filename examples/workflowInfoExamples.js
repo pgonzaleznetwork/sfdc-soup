@@ -14,8 +14,8 @@ let connection = {
 };
 
 let entryPoint = {
-    name:'Case',
-    id:'Case',
+    name:'Lead',
+    id:'Lead',
     type:'Object'
 }
 
