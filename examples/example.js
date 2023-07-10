@@ -77,8 +77,12 @@ async function test(){
 
     //console.log(usageResponse.datatable)
 
-    fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
+    //fs.writeFileSync('examples/usage.json',JSON.stringify(usageResponse.usageTree));
    //fs.writeFileSync('examples/usage.csv',usageResponse.csv);
+
+    console.log(usageResponse.xml)
+
+   fs.writeFileSync('examples/usage.xml',usageResponse.packageXml);
 
     //fs.writeFileSync('examples/dependencies.json',JSON.stringify(dependencyResponse.dependencyTree));
     /*fs.writeFileSync('examples/dependencies.csv',dependencyResponse.excel);*/
